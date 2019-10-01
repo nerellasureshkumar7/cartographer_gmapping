@@ -1,8 +1,9 @@
+<?xml version="1.0"?>
 <launch> 
 	
 		<param name="use_sim_time" value="false"/>
 
-		<arg name="map_file" value="$(find cartographer_gmapping)/maps/gmapping/diff_world_env0_map.yaml"/>
+		<arg name="map_file" value="$(find cartographer_gmapping)/maps/gmapping/diff_world_obstacles_map.yaml"/>
 
 
   		<node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"> 
