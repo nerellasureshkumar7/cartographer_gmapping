@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="enable_cartographer" default="true"/>
+    <arg name="enable_amcl" default="false"/>
+    <param name="use_sim_time" value="true"/> 
+
+
+<!-- **********************************************************************************************************
+                                      Rviz 
+  ********************************************************************************************************** -->  
+    <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz" />
+
+
+
+  <!-- **********************************************************************************************************
+                                      Cartographer_Node 
+********************************************************************************************************** -->  
+      <!--Running cartographer node with the configuratoin file-->
+    <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" if="$(arg enable_cartographer)" args="
+            -configuration_directory $(find cartographer_ros)/configuration_files
+            -configuration_basename differential_drive.lua" output="screen">
+    </node>
+
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" 
+        if="$(arg enable_cartographer)"    args="-resolution 0.05">
+    </node>
+
+<!-- **********************************************************************************************************
+                                      AMCL
+********************************************************************************************************** -->
+
+    <node pkg="amcl" type="amcl" name="amcl" output="screen" if="$(arg enable_amcl)" >
+        <param name="odom_model_type" value="diff"/>
+        <param name="odom_alpha5" value="0.1"/>
+        <param name="transform_tolerance" value="0.2" />
+        <param name="gui_publish_rate" value="10.0"/>
+        <param name="laser_max_beams" value="30"/>
+        <param name="min_particles" value="5"/>
+        <param name="max_particles" value="500000"/>
+        <param name="kld_err" value="0.05"/>
+        <param name="kld_z" value="0.99"/>
+        <param name="odom_alpha1" value="0.2"/>
+        <param name="odom_alpha2" value="0.2"/>
+
+        <param name="odom_alpha3" value="0.8"/>
+        <param name="odom_alpha4" value="0.2"/>
+        <param name="laser_z_hit" value="0.5"/>
+        <param name="laser_z_short" value="0.05"/>
+        <param name="laser_z_max" value="0.05"/>
+        <param name="laser_z_rand" value="0.5"/>
+        <param name="laser_sigma_hit" value="0.2"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_model_type" value="likelihood_field"/>
+         <param name="laser_likelihood_max_dist" value="2.0"/>
+        <param name="update_min_d" value="0.2"/>
+        <param name="update_min_a" value="0.5"/>
+        <param name="odom_frame_id" value="odom"/>
+        <param name="resample_interval" value="1"/>
+        <param name="transform_tolerance" value="0.1"/>
+        <param name="recovery_alpha_slow" value="0.0"/>
+        <param name="recovery_alpha_fast" value="0.0"/>
+    </node>
+
+</launch>

@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-    <arg name="enable_rviz" default="true"/>
     <arg name="enable_gmapping" default="false"/>
     <arg name="enable_amcl" default="true"/>
     <param name="use_sim_time" value="true"/>
@@ -10,7 +9,7 @@
                                       Rviz 
 ********************************************************************************************************** -->
     <node name="rviz" pkg="rviz" type="rviz" args = "-d $(find cartographer_gmapping)/rviz/map.rviz"
-       if="$(arg enable_rviz)" >
+       if="$(arg enable_gmapping)" >
       </node>
 
   <!-- **********************************************************************************************************
@@ -59,7 +58,7 @@
       <param name="gui_publish_rate" value="10.0"/>
       <param name="laser_max_beams" value="30"/>
       <param name="min_particles" value="5"/>
-      <param name="max_particles" value="50000"/>
+      <param name="max_particles" value="500000"/>
       <param name="kld_err" value="0.05"/>
       <param name="kld_z" value="0.99"/>
       <param name="odom_alpha1" value="0.2"/>
@@ -84,11 +83,6 @@
       <param name="recovery_alpha_slow" value="0.0"/>
       <param name="recovery_alpha_fast" value="0.0"/>
     </node>
-
-
-<!-- **********************************************************************************************************
-                                      Path_Planning 
-********************************************************************************************************** -->
 
 </launch>
 
