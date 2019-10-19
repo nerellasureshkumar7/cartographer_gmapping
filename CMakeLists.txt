@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -204,3 +205,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(robot_pose src/diff_drive_robot_pose.cpp)
+target_link_libraries(robot_pose ${catkin_LIBRARIES})
+add_dependencies(robot_pose cartographer_gmapping_generate_messages_cpp)
