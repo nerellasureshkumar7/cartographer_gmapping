@@ -43,8 +43,8 @@ TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = false
 -- TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.linear_search_window = 0.05
 -- TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.angular_search_window = math.rad(4.)
 
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight=100
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight=150
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight=30
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight=120
 
 TRAJECTORY_BUILDER_2D.submaps.num_range_data = 100 --70   
 
