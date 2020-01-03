@@ -9,7 +9,7 @@
   		<node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"> 
   		</node> 
 
-<!-- 
+
   		<node name="rviz" pkg="rviz" type="rviz" args = "-d $(find cartographer_gmapping)/rviz/map.rviz">
-      </node> -->
+      </node>
 </launch>
